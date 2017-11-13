@@ -1,0 +1,16 @@
+{
+  "name": "vantage777/model-generator",
+  "description": "Eloquent Model Generator",
+  "version": "1.0",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Vantage\\EloquentModelGenerator\\": "src/"
+    }
+  },
+  "require": {
+    "laravel/framework": "^5.0",
+    "doctrine/dbal": "^2.5",
+    "vantage777/code-generator": "^1.0"
+  }
+}
