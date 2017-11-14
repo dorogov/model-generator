@@ -1,5 +1,5 @@
 {
-  "name": "vantage777/model-generator",
+  "name": "dorogov/model-generator",
   "description": "Eloquent Model Generator",
   "version": "1.0",
   "license": "MIT",
@@ -11,6 +11,6 @@
   "require": {
     "laravel/framework": "^5.0",
     "doctrine/dbal": "^2.5",
-    "vantage777/code-generator": "1.0"
+    "dorogov/code-generator": "1.0"
   }
 }
