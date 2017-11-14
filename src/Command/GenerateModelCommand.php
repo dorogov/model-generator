@@ -20,7 +20,7 @@ class GenerateModelCommand extends Command
     /**
      * @var string
      */
-    protected $name = 'vantage777:generate:model';
+    protected $name = 'dorogov:generate:model';
 
     /**
      * @var Generator
