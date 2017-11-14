@@ -1,7 +1,7 @@
 {
   "name": "dorogov/model-generator",
   "description": "Eloquent Model Generator",
-  "version": "1.0",
+  "version": "2.0",
   "license": "MIT",
   "autoload": {
     "psr-4": {
