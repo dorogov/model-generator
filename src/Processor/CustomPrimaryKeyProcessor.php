@@ -11,6 +11,7 @@ use Krlove\EloquentModelGenerator\TypeRegistry;
 
 /**
  * Class CustomPrimaryKeyProcessor
+ *
  * @package Krlove\EloquentModelGenerator\Processor
  */
 class CustomPrimaryKeyProcessor implements ProcessorInterface
@@ -27,8 +28,9 @@ class CustomPrimaryKeyProcessor implements ProcessorInterface
 
     /**
      * FieldProcessor constructor.
+     *
      * @param DatabaseManager $databaseManager
-     * @param TypeRegistry $typeRegistry
+     * @param TypeRegistry    $typeRegistry
      */
     public function __construct(DatabaseManager $databaseManager, TypeRegistry $typeRegistry)
     {
@@ -42,7 +44,7 @@ class CustomPrimaryKeyProcessor implements ProcessorInterface
     public function process(EloquentModel $model, Config $config)
     {
         $schemaManager = $this->databaseManager->connection($config->get('connection'))->getDoctrineSchemaManager();
-        $prefix        = $this->databaseManager->connection($config->get('connection'))->getTablePrefix();
+        $prefix = $this->databaseManager->connection($config->get('connection'))->getTablePrefix();
 
         $tableDetails = $schemaManager->listTableDetails($prefix . $model->getTableName());
         $primaryKey = $tableDetails->getPrimaryKey();
@@ -80,7 +82,8 @@ class CustomPrimaryKeyProcessor implements ProcessorInterface
             $model->addProperty($keyTypeProperty);
         }
         if ($column->getAutoincrement() !== true) {
-            $autoincrementProperty = new PropertyModel('incrementing', 'protected', false);
+            //$autoincrementProperty = new PropertyModel('incrementing', 'protected', false);
+            $autoincrementProperty = new PropertyModel('incrementing', 'public', false);
             $autoincrementProperty->setDocBlock(
                 new DocBlockModel('Indicates if the IDs are auto-incrementing.', '', '@var bool')
             );
