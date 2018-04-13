@@ -12,6 +12,7 @@ use Krlove\EloquentModelGenerator\Model\EloquentModel;
 
 /**
  * Class TableNameProcessor
+ *
  * @package Krlove\EloquentModelGenerator\Processor
  */
 class TableNameProcessor implements ProcessorInterface
@@ -23,6 +24,7 @@ class TableNameProcessor implements ProcessorInterface
 
     /**
      * TableNameProcessor constructor.
+     *
      * @param EmgHelper $helper
      */
     public function __construct(EmgHelper $helper)
@@ -35,12 +37,18 @@ class TableNameProcessor implements ProcessorInterface
      */
     public function process(EloquentModel $model, Config $config)
     {
-        $className     = $config->get('class_name');
-        $baseClassName = $config->get('base_class_name');
-        $tableName     = $config->get('table_name');
+        $className         = $config->get('class_name');
+        $baseClassName     = $config->get('base_class_name');
+        $sofaEloquenceName = $config->get('sofa_eloquence_name');
+        $sofaMappableName  = $config->get('sofa_mappable_name');
+        $sofaMutableName   = $config->get('sofa_mutable_name');
+        $tableName         = $config->get('table_name');
 
         $model->setName(new ClassNameModel($className, $this->helper->getShortClassName($baseClassName)));
         $model->addUses(new UseClassModel(ltrim($baseClassName, '\\')));
+        $model->addUses(new UseClassModel(ltrim($sofaEloquenceName, '\\')));
+        $model->addUses(new UseClassModel(ltrim($sofaMappableName, '\\')));
+        $model->addUses(new UseClassModel(ltrim($sofaMutableName, '\\')));
         $model->setTableName($tableName ?: $this->helper->getDefaultTableName($className));
 
         if ($model->getTableName() !== $this->helper->getDefaultTableName($className)) {
