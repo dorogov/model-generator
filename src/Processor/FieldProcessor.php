@@ -54,8 +54,22 @@ class FieldProcessor implements ProcessorInterface
         foreach ($tableDetails->getColumns() as $column) {
 
 
+            $keyFormatted = $column->getName();
+
+            $prefix = $config->get('prefix');
+
+
             $keyFormatted = str_replace('UF_', '', $column->getName());  // Обрезаем UF_
-            $keyFormatted = lcfirst(ucwords(strtolower($keyFormatted), '_')); // Делаем нижний регистр и CamelCase
+
+
+            if (!empty($prefix)) {
+                $keyFormatted = ucwords(strtolower($keyFormatted), '_'); // Делаем нижний регистр и CamelCase
+                $keyFormatted = $prefix . $keyFormatted;
+            } else {
+                $keyFormatted = lcfirst(ucwords(strtolower($keyFormatted), '_')); // Делаем нижний регистр и CamelCase
+            }
+
+
             $keyFormatted = str_replace('_', '', $keyFormatted);         // Убираем оставшиеся символы "_"
 
 
